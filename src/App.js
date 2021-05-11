@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import  { CardList } from './components/card-list/card-list'
 import './App.css';
 
 class App extends Component{
@@ -23,10 +24,17 @@ class App extends Component{
   render(){
     return(
     <div className="App">
+      <CardList/>
         {
           this.state.employees.map(employee =>
             <div key={employee.id}> 
               <h1>Name: {employee.name}</h1>
+              <div>
+                <h2>Information:</h2>
+                <a href={employee.website} rel='noreferrer' target='_blank'>{employee.website}</a>
+                <p>Phone number: {employee.phone}</p>
+                <p>User Name: {employee.username}</p>
+              </div>
               <div>
                 <h2>Address:</h2>
                 <p>{employee.address.street}</p>
