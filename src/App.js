@@ -8,49 +8,23 @@ class App extends Component{
     super();
     
     this.state={
-      employees: []
+      users: []
     }
   }
 
   componentDidMount(){
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch('https://randomuser.me/api/?results=10')
     .then(res => res.json())
     .then(users => {
-      this.setState({employees: users})
-      console.log(users)
+      this.setState({users: users})
+      console.log('Users', users)
     })
   }
 
   render(){
     return(
     <div className="App">
-      <CardList/>
-        {
-          this.state.employees.map(employee =>
-            <div key={employee.id}> 
-              <h1>Name: {employee.name}</h1>
-              <div>
-                <h2>Information:</h2>
-                <a href={employee.website} rel='noreferrer' target='_blank'>{employee.website}</a>
-                <p>Phone number: {employee.phone}</p>
-                <p>User Name: {employee.username}</p>
-              </div>
-              <div>
-                <h2>Address:</h2>
-                <p>{employee.address.street}</p>
-                <p>{employee.address.suite}</p>
-                <p>{employee.address.city}, {employee.address.zipcode}</p>
-              </div>
-              <div>
-                <h2>Company:</h2>
-                <p>{employee.company.name}</p>
-                <p>{employee.company.bs}</p>
-                <p>{employee.company.catchPhrase}, {employee.address.zipcode}</p>
-              </div>
-            </div>
-            
-          )
-        }
+      <CardList users={this.state.users}/>
     </div>
     )
   }
