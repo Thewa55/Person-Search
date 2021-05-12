@@ -11,7 +11,7 @@ export const CardList = (props) => {
             { usersList ? (
                 <>
                     {usersList.map(user =>
-                        <Card key={user.login.salt} user={user}/>
+                        <Card key={user.login.salt}user={user}/>
                     )}
                 </>
             ) : (
