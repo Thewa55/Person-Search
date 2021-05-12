@@ -3,12 +3,14 @@ import './card.css'
 
 export const Card = (props)=>{
     console.log(props.user.login.salt)
+    let person = props.user
     return (    
-        <div key={props.user.login.salt} className='card-container'> 
-            <img src={props.user.picture.large} alt='portrait'/>
-            <h1>Name: {props.user.name.first}</h1>
-            <p>E-mail: {props.user.email}</p>
-            <p>Cell: {props.user.cell}</p>
+        <div key={person.login.salt} className='card-container'> 
+            <img src={person.picture.large} alt='portrait'/>
+            <h4>Name: {person.name.first}</h4>
+            <p>E-mail: {person.email}</p>
+            <p>Cell: {person.cell}</p>
+            <p>Address: {person.location.street.number} {person.location.street.name}</p>
         </div>
     )
 }
