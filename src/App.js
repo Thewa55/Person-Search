@@ -23,6 +23,18 @@ class App extends Component{
   }
 
   render(){
+    
+    const { users, searchField} = this.state; 
+    let filteredUsers = []
+      if(users.length > 0 ){
+        console.log(users)
+        filteredUsers = users.filter(user => 
+          user.name.first.toLowerCase().includes(searchField.toLowerCase())
+        )
+      }
+      else{
+        console.log('loading...')
+      }
     return(
     <div className="App">
       <input 
@@ -30,7 +42,7 @@ class App extends Component{
         placeholder='search person' 
         onChange={e => this.setState({searchField: e.target.value})}>
       </input>
-      <CardList users={this.state.users}/>
+      <CardList users={filteredUsers}/>
     </div>
     )
   }
