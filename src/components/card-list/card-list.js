@@ -15,7 +15,7 @@ export const CardList = (props) => {
                     )}
                 </>
             ) : (
-                <div> No users yet </div>
+                <div> No users found </div>
             )
             }
         </div>

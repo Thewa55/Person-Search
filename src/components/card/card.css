@@ -9,7 +9,8 @@
     backface-visibility: hidden;
     transform: translateZ(0);
     transition: transform .25s ease-out;
-    -moz-osx-font-smothing: grayscale
+    -moz-osx-font-smothing: grayscale;
+    box-shadow: 5px 5px 5px black;
 }
 
 .card-container:hover{
