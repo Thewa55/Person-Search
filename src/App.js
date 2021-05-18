@@ -24,15 +24,20 @@ class App extends Component{
   }
 
 
-  // componentDidUpdate(prevProps, prevState){
-  //   if(prevState.users.length === 1){
-  //     fetch('https://randomuser.me/api/?nat=us&results=10')
-  //     .then(res => res.json())
-  //     .then(users => {
-  //       this.setState({users: users.results})
-  //     })
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.users.length === 1){
+      fetch('https://randomuser.me/api/?nat=us&results=10')
+      .then(res => res.json())
+      .then(users => {
+        this.setState({users: users.results})
+      })
+    }
+  }
+
+  //arrow function binds it to the class without binding 'this' in the constructor
+  handleChange = (e) => {
+    this.setState({searchField: e.target.value})
+  }
 
   render(){
     // if(!this.state.users.length)
@@ -44,7 +49,7 @@ class App extends Component{
 
     return(
     <div className="App">
-      <SearchBox placeholder='Search Person' handleChange={e=>this.setState({searchField: e.target.value})}/>
+      <SearchBox placeholder='Search Person' handleChange={this.handleChange}/>
       <CardList users={filteredUser}/>
     </div>
     )
