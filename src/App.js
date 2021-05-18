@@ -8,7 +8,7 @@ class App extends Component{
     super();
     
     this.state={
-      users: [{}],
+      users: [],
       searchField: ''
     }
   }
@@ -18,13 +18,12 @@ class App extends Component{
     .then(res => res.json())
     .then(users => {
       this.setState({users: users.results})
-      console.log('Users', users)
+      console.log('Users', users.results)
     })
   }
 
 
   componentDidUpdate(prevProps, prevState){
-    // if(JSON.stringify(prevState.users) !== JSON.stringify(this.state.users)){
     if(prevState.users.length === 1){
       fetch('https://randomuser.me/api/?results=10')
       .then(res => res.json())
@@ -35,9 +34,12 @@ class App extends Component{
   }
 
   render(){
-   // const { users, searchField } = this.state;
+    if(!this.state.users.length)
+      return null
+
+    const { users, searchField } = this.state;
     console.log(this.state.users)
-   // const filteredUser = users.results ? users.results.filter(user => user.name.first.toLowerCase().includes(searchField.toLowerCase())) : []
+    const filteredUser = users ? users.filter(user => user.name.first.toLowerCase().includes(searchField.toLowerCase())) : []
     return(
     <div className="App">
       <input 
@@ -45,7 +47,7 @@ class App extends Component{
         placeholder='search person' 
         onChange={e => this.setState({searchField: e.target.value})}>
       </input>
-      <CardList users={this.state.users}/>
+      <CardList users={filteredUser}/>
     </div>
     )
   }

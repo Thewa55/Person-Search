@@ -5,10 +5,10 @@ import './card-list.css'
 export const CardList = (props) => {
 
     let usersList = props.users
-    console.log(usersList)
+    console.log(props)
     return (
         <div className='card-list'>
-            { usersList.length > 1 ? (
+            { usersList.length > 0 ? (
                 <>
                     {usersList.map(user =>
                         <Card key={user.login.salt}user={user}/>
