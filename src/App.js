@@ -14,7 +14,7 @@ class App extends Component{
   }
 
   componentDidMount(){
-    fetch('https://randomuser.me/api/?results=10')
+    fetch('https://randomuser.me/api/?nat=us&results=10')
     .then(res => res.json())
     .then(users => {
       this.setState({users: users.results})
@@ -25,7 +25,7 @@ class App extends Component{
 
   componentDidUpdate(prevProps, prevState){
     if(prevState.users.length === 1){
-      fetch('https://randomuser.me/api/?results=10')
+      fetch('https://randomuser.me/api/?nat=us&results=10')
       .then(res => res.json())
       .then(users => {
         this.setState({users: users.results})
