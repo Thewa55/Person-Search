@@ -36,9 +36,19 @@ class App extends Component{
 
   //arrow function binds it to the class without binding 'this' in the constructor
   handleChange = (e) => {
-    this.setState({searchField: e.target.value})
+    // this.setState({searchField: e.target.value})
+    this.debouncedSearch(e.target.value)
   }
 
+  debounce = (callback, delay) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => callback(...args), delay)
+    }
+  }
+
+  debouncedSearch = this.debounce(text => this.setState({searchField: text}), 500)
   render(){
     // if(!this.state.users.length)
     //   return null

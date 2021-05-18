@@ -2,7 +2,6 @@ import React from 'react'
 import './card.css'
 
 export const Card = (props)=>{
-    console.log(props.user.login.salt)
     let person = props.user
     return (    
         <div key={person.login.salt} className='card-container'> 
