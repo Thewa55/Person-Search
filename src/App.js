@@ -36,7 +36,6 @@ class App extends Component{
 
   //arrow function binds it to the class without binding 'this' in the constructor
   handleChange = (e) => {
-    // this.setState({searchField: e.target.value})
     this.debouncedSearch(e.target.value)
   }
 
@@ -48,10 +47,9 @@ class App extends Component{
     }
   }
 
-  debouncedSearch = this.debounce(text => this.setState({searchField: text}), 500)
+  debouncedSearch = this.debounce(search => this.setState({searchField: search}), 500)
+
   render(){
-    // if(!this.state.users.length)
-    //   return null
 
     const { users, searchField } = this.state;
     console.log(this.state.users)
@@ -59,7 +57,9 @@ class App extends Component{
 
     return(
     <div className="App">
-      <SearchBox placeholder='Search Person' handleChange={this.handleChange}/>
+      <div className='Nav'>
+        <SearchBox placeholder='Search Person' handleChange={this.handleChange}/>
+      </div>
       <CardList users={filteredUser}/>
     </div>
     )
