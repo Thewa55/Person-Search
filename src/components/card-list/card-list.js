@@ -11,12 +11,12 @@ export const CardList = (props) => {
             { usersList.length > 0 ? (
                 <>
                     {usersList.map(user =>
-                        <Card key={user.login.salt}user={user}/>
+                        <Card key={user.login.salt} user={user}/>
                     )}
                 </>
-            ) : (
-                <div> No users found </div>
-            )
+                ) : (
+                <div> No users were found </div>
+                )
             }
         </div>
     )

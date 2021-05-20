@@ -11,6 +11,7 @@
     transition: transform .25s ease-out;
     -moz-osx-font-smothing: grayscale;
     box-shadow: 5px 5px 5px black;
+    font-family: 'Raleway', sans-serif;
 }
 
 .card-container:hover{
