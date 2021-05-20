@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import  { CardList } from './components/card-list/card-list'
 import './App.css';
+import  { CardList } from './components/card-list/card-list'
 import { SearchBox} from './components/search-box/search-box'
 
 class App extends Component{
@@ -25,7 +25,7 @@ class App extends Component{
 
 
   componentDidUpdate(prevProps, prevState){
-    if(prevState.users.length === 1){
+    if(prevState.users.length < 1){
       fetch('https://randomuser.me/api/?nat=us&results=10')
       .then(res => res.json())
       .then(users => {
@@ -58,6 +58,7 @@ class App extends Component{
     return(
     <div className="App">
       <div className='Nav'>
+      <h1>Person Search</h1>
         <SearchBox placeholder='Search Person' handleChange={this.handleChange}/>
       </div>
       <CardList users={filteredUser}/>
