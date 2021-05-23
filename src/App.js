@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css';
 import  { CardList } from './components/card-list/card-list'
 import { SearchBox} from './components/search-box/search-box'
+import { Modal } from './components/modal/modal'
 
 class App extends Component{
 
@@ -60,6 +61,7 @@ class App extends Component{
       <div className='Nav'>
       <h1>Person Search</h1>
         <SearchBox placeholder='Search Person' handleChange={this.handleChange}/>
+        <Modal></Modal>
       </div>
       <CardList users={filteredUser}/>
     </div>
