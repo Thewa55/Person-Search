@@ -1,7 +1,15 @@
 import React from "react";
 export const Modal = (props) => {
-    
+
   return (
-    <div>Hello Modal</div>
+    <>
+        {!props.show ? 
+            (
+                <div></div>
+            ):(
+                <div>Hello Modal</div>
+            )
+        }
+    </>
   )
 }

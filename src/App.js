@@ -11,7 +11,8 @@ class App extends Component{
     
     this.state={
       users: [],
-      searchField: ''
+      searchField: '',
+      show: false
     }
   }
 
@@ -50,6 +51,10 @@ class App extends Component{
 
   debouncedSearch = this.debounce(search => this.setState({searchField: search}), 500)
 
+  showModal = e => {
+    this.setState({show: true})
+  }
+
   render(){
 
     const { users, searchField } = this.state;
@@ -61,7 +66,8 @@ class App extends Component{
       <div className='Nav'>
       <h1>Person Search</h1>
         <SearchBox placeholder='Search Person' handleChange={this.handleChange}/>
-        <Modal></Modal>
+        <Modal show={this.state.show}/>
+        <button onClick={e => {this.showModal()}}>Show Modal</button>
       </div>
       <CardList users={filteredUser}/>
     </div>
