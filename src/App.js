@@ -68,9 +68,9 @@ class App extends Component{
       <div className='Nav'>
       <h1>Person Search</h1>
         <SearchBox placeholder='Search Person' handleChange={this.handleChange}/>
-        <Modal onClose={this.showModal} show={this.state.show}/>
-        <button onClick={e => {this.showModal()}}>Show Modal</button>
+        {this.state.show ? (<></>):(<button onClick={e => {this.showModal()}}>Show Modal</button>)}
       </div>
+      <Modal onClose={this.showModal} show={this.state.show}/>
       <CardList users={filteredUser}/>
     </div>
     )
