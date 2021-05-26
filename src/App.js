@@ -55,7 +55,9 @@ class App extends Component{
     this.setState({show: !this.state.show})
   }
 
-
+  newPerson = (person) => {
+    
+  }
 
   render(){
 
