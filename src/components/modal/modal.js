@@ -13,10 +13,16 @@ export const Modal = (props) => {
             ):(
                 <div className='Modal'>
                     <h2>Modal Window</h2>
-                    <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis deserunt corrupti, ut fugit magni qui quasi nisi amet repellendus non fuga omnis a sed impedit explicabo accusantium nihil doloremque consequuntur.</div>
-                    <div class="actions">
-                        <button onClick={onClose} class="toggle-button">Close Modal</button>
-                    </div>
+                    <form>
+                        <input type='text' placeholder='Name'></input>
+                        <input type='email' placeholder='E-mail'></input>
+                        <input type='telephone' placeholder='Cell'></input>
+                        <input type='text' placeholder='Address'></input>                    
+                        <div class="actions">
+                            <button type='submit'>Submit</button>
+                            <button onClick={onClose} class="toggle-button">Close Modal</button>
+                        </div>
+                    </form>
                 </div>
             )
         }
