@@ -20,21 +20,23 @@ class App extends Component{
     fetch('https://randomuser.me/api/?nat=us&results=12')
     .then(res => res.json())
     .then(users => {
+      users.results.forEach(user => {
+        user.address = user.location.street.number + ' ' + user.location.street.name
+      })
       this.setState({users: users.results})
-      console.log('Users', users.results)
     })
   }
 
 
-  componentDidUpdate(prevProps, prevState){
-    if(prevState.users.length < 1){
-      fetch('https://randomuser.me/api/?nat=us&results=12')
-      .then(res => res.json())
-      .then(users => {
-        this.setState({users: users.results})
-      })
-    }
-  }
+  // componentDidUpdate(prevProps, prevState){
+  //   if(prevState.users.length < 1){
+  //     fetch('https://randomuser.me/api/?nat=us&results=12')
+  //     .then(res => res.json())
+  //     .then(users => {
+  //       this.setState({users: users.results})
+  //     })
+  //   }
+  // }
 
   //arrow function binds it to the class without binding 'this' in the constructor
   handleChange = (e) => {
@@ -55,8 +57,11 @@ class App extends Component{
     this.setState({show: !this.state.show})
   }
 
-  newPerson = (person) => {
-    
+  createPerson = (person) => {
+    console.log(person)
+    this.setState({
+      users: [...this.state.users, person]
+    })
   }
 
   render(){
@@ -72,7 +77,7 @@ class App extends Component{
         <SearchBox placeholder='Search Person' handleChange={this.handleChange}/>
         {this.state.show ? (<></>):(<button onClick={e => {this.showModal()}}>Show Modal</button>)}
       </div>
-      <Modal onClose={this.showModal} show={this.state.show}/>
+      <Modal createPerson={this.createPerson} onClose={this.showModal} show={this.state.show}/>
       <CardList users={filteredUser}/>
     </div>
     )
