@@ -5,7 +5,6 @@ import './card-list.css'
 export const CardList = (props) => {
 
     let usersList = props.users
-    console.log(props)
     return (
         <div className='card-list'>
             { usersList.length > 0 ? (

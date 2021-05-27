@@ -13,6 +13,7 @@ export const Modal = (props) => {
   const idRef= useRef()
 
   const onClose= (e) => {props.onClose()}
+
   const newPerson = (e)=> { 
     e.preventDefault()
     let newPerson = {
@@ -32,7 +33,6 @@ export const Modal = (props) => {
             salt: idRef.current.value
         }
     }
-    // console.log(newPerson);
     props.createPerson(newPerson)
   }
 
@@ -45,14 +45,30 @@ export const Modal = (props) => {
                 <div className='Modal'>
                     <h2>Modal Window</h2>
                     <form>
-                        <input type='text' placeholder='Name' ref={fullnameRef}></input>
-                        <input type='email' placeholder='E-mail' ref={emailRef}></input>
-                        <input type='telephone' placeholder='Cell' ref={cellRef}></input>
-                        <input type='text' placeholder='Address'ref={addressRef}></input>    
-                        <input type='text' placeholder='City' ref={cityRef}></input>
-                        <input type='text' placeholder='State'ref={stateRef}></input>   
-                        <input type='text' placeholder='Zip Code'ref={zipRef}></input>
-                        <input type='text' placeholder='ID'ref={idRef}></input>                    
+                        <div>
+                            <input type='text' placeholder='Name' ref={fullnameRef}></input>
+                        </div>
+                        <div>
+                            <input type='email' placeholder='E-mail' ref={emailRef}></input>
+                        </div>
+                        <div>
+                            <input type='telephone' placeholder='Cell' ref={cellRef}></input>
+                        </div>
+                        <div>
+                            <input type='text' placeholder='Address'ref={addressRef}></input>
+                        </div>
+                        <div>    
+                            <input type='text' placeholder='City' ref={cityRef}></input>
+                        </div>
+                        <div>
+                            <input type='text' placeholder='State'ref={stateRef}></input>
+                        </div> 
+                        <div>  
+                            <input type='text' placeholder='Zip Code'ref={zipRef}></input>
+                        </div>
+                        <div>
+                            <input type='text' placeholder='ID'ref={idRef}></input>
+                        </div>                    
                         <div class="actions">
                             <button type='submit' onClick={newPerson}>Submit</button>
                             <button onClick={onClose} class="toggle-button">Close Modal</button>

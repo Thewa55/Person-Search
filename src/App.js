@@ -58,7 +58,6 @@ class App extends Component{
   }
 
   createPerson = (person) => {
-    console.log(person)
     this.setState({
       users: [...this.state.users, person]
     })
@@ -67,7 +66,6 @@ class App extends Component{
   render(){
 
     const { users, searchField } = this.state;
-    console.log(this.state.users)
     const filteredUser = users ? users.filter(user => user.name.first.toLowerCase().includes(searchField.toLowerCase())) : []
 
     return(
@@ -75,7 +73,7 @@ class App extends Component{
       <div className='Nav'>
       <h1>Person Search</h1>
         <SearchBox placeholder='Search Person' handleChange={this.handleChange}/>
-        {this.state.show ? (<></>):(<button onClick={e => {this.showModal()}}>Show Modal</button>)}
+        {this.state.show ? (<></>):(<button onClick={e => {this.showModal()}}>Add Person</button>)}
       </div>
       <Modal createPerson={this.createPerson} onClose={this.showModal} show={this.state.show}/>
       <CardList users={filteredUser}/>
