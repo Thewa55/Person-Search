@@ -11,29 +11,68 @@ export const Modal = (props) => {
   const cityRef = useRef()
   const zipRef= useRef()
   const idRef= useRef()
+  let errors = false;
+  let errorMessage = {
+    cellError: '',
+    emailError: '',
+    fullNameError: '',
+    addressError: '',
+    cityError: '',
+    stateError: '',
+    zipError: '',
+    idError: ''
+  }
 
   const onClose= (e) => {props.onClose()}
 
   const newPerson = (e)=> { 
     e.preventDefault()
-    let newPerson = {
-        picture: { large: ''},
-        cell: cellRef.current.value,
-        email: emailRef.current.value,
-        name: {
-            first: fullnameRef.current.value
-        },
-        address: addressRef.current.value,
-        location: {
-            city: cityRef.current.value,
-            state: stateRef.current.value,
-            postcode: zipRef.current.value
-        },
-        login: {
-            salt: idRef.current.value
-        }
+    if(cellRef.current.value === ''){
+        errorMessage.cellError = 'Cell Phone Number Required'
+        errors = true
+    } else if(emailRef.current.value == null){
+        errorMessage.emailError = 'Email required'
+        errors = true
+    } else if(fullnameRef.current.value == null){
+        errorMessage.fullNameError = 'Name required'
+        errors = true
+    } else if (addressRef.current.value == null){
+        errorMessage.addressError = 'Address required'
+        errors = true
+    } else if (cityRef.current.value == null){
+        errorMessage.cityError = 'City required'
+        errors = true
+    } else if (stateRef.current.value == null){
+        errorMessage.stateError = 'State required'
+        errors = true
+    } else if (idRef.current.value == null){
+        errorMessage.idError = 'ID required'
+        errors = true
     }
-    props.createPerson(newPerson)
+
+    console.log(errors)
+    if(!errors){
+        let newPerson = {
+            picture: { large: ''},
+            cell: cellRef.current.value,
+            email: emailRef.current.value,
+            name: {
+                first: fullnameRef.current.value
+            },
+            address: addressRef.current.value,
+            location: {
+                city: cityRef.current.value,
+                state: stateRef.current.value,
+                postcode: zipRef.current.value
+            },
+            login: {
+                salt: idRef.current.value
+            }
+        }
+        props.createPerson(newPerson)
+    } else {
+        console.log(errorMessage)
+    }
   }
 
   return (
@@ -70,7 +109,7 @@ export const Modal = (props) => {
                             <input type='text' placeholder='ID'ref={idRef}></input>
                         </div>                    
                         <div class="actions">
-                            <button type='submit' onClick={newPerson}>Submit</button>
+                            <button type='submit' onClick={newPerson} id='submit'>Submit</button>
                             <button onClick={onClose} class="toggle-button">Close Modal</button>
                         </div>
                     </form>

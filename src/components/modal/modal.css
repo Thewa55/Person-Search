@@ -32,3 +32,6 @@ button {
     font-size: 0.8rem;
     line-height: 1;
 }
+#submit{
+    margin-right: 1em;
+}
