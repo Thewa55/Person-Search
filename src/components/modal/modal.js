@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useEffect, useState} from "react";
 import './modal.css'
 
 export const Modal = (props) => {
@@ -11,51 +11,42 @@ export const Modal = (props) => {
   const cityRef = useRef()
   const zipRef= useRef()
   const idRef= useRef()
-  let errors = false;
-//   let errorMessage = {
-//     cellError: '',
-//     emailError: '',
-//     fullNameError: '',
-//     addressError: '',
-//     cityError: '',
-//     stateError: '',
-//     zipError: '',
-//     idError: ''
-//   }
-  let errorArr = []
-  const onClose= (e) => {props.onClose()}
+  const [errorArr, setErrorArr] = useState([])
+
+  useEffect(() => {}, [errorArr])
+  const onClose= (e) => {props.onClose()};
 
   const newPerson = (e)=> { 
     e.preventDefault()
+
     if(cellRef.current.value === ''){
-        errorArr.push('Cell Phone Number Required')
+        setErrorArr(...errorArr, 'Cell Phone Number Required')
     }
     if(emailRef.current.value === ''){
-        errorArr.push('Email required')
+        setErrorArr(...errorArr, 'Email required')
     } 
     if(fullnameRef.current.value === ''){
         // errorMessage.fullNameError = 'Name required'
-        errorArr.push('Name required')
+        setErrorArr(...errorArr, 'Name required')
     } 
     if (addressRef.current.value === ''){
         // errorMessage.addressError = 'Address required'
-        errorArr.push('Address required')
+        setErrorArr(...errorArr, 'Address required')
     }
     if (cityRef.current.value === ''){
         // errorMessage.cityError = 'City required'
-        errorArr.push('City required')
+        setErrorArr(...errorArr, 'City required')
     }
     if (stateRef.current.value === ''){
         // errorMessage.stateError = 'State required'
-        errorArr.push('State required')
+        setErrorArr(...errorArr, 'State required')
     }
     if (idRef.current.value === ''){
         // errorMessage.idError = 'ID required'
-        errorArr.push('ID required')
-    }
+        setErrorArr(...errorArr, 'ID required')
+    };
 
-    console.log(errors)
-    if(errorArr.length === 0){
+    if(!errorArr){
         let newPerson = {
             picture: { large: ''},
             cell: cellRef.current.value,
@@ -87,6 +78,7 @@ export const Modal = (props) => {
             ):(
                 <div className='Modal'>
                     <h2>Modal Window</h2>
+                    {/* {errorArr ? (errorArr.forEach(error => { <div className='Error'>{error}</div>})):(<> </>) } */}
                     <form>
                         <div>
                             <input type='text' placeholder='Name' ref={fullnameRef}></input>
