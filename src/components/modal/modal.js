@@ -12,46 +12,50 @@ export const Modal = (props) => {
   const zipRef= useRef()
   const idRef= useRef()
   let errors = false;
-  let errorMessage = {
-    cellError: '',
-    emailError: '',
-    fullNameError: '',
-    addressError: '',
-    cityError: '',
-    stateError: '',
-    zipError: '',
-    idError: ''
-  }
-
+//   let errorMessage = {
+//     cellError: '',
+//     emailError: '',
+//     fullNameError: '',
+//     addressError: '',
+//     cityError: '',
+//     stateError: '',
+//     zipError: '',
+//     idError: ''
+//   }
+  let errorArr = []
   const onClose= (e) => {props.onClose()}
 
   const newPerson = (e)=> { 
     e.preventDefault()
     if(cellRef.current.value === ''){
-        errorMessage.cellError = 'Cell Phone Number Required'
-        errors = true
-    } else if(emailRef.current.value == null){
-        errorMessage.emailError = 'Email required'
-        errors = true
-    } else if(fullnameRef.current.value == null){
-        errorMessage.fullNameError = 'Name required'
-        errors = true
-    } else if (addressRef.current.value == null){
-        errorMessage.addressError = 'Address required'
-        errors = true
-    } else if (cityRef.current.value == null){
-        errorMessage.cityError = 'City required'
-        errors = true
-    } else if (stateRef.current.value == null){
-        errorMessage.stateError = 'State required'
-        errors = true
-    } else if (idRef.current.value == null){
-        errorMessage.idError = 'ID required'
-        errors = true
+        errorArr.push('Cell Phone Number Required')
+    }
+    if(emailRef.current.value === ''){
+        errorArr.push('Email required')
+    } 
+    if(fullnameRef.current.value === ''){
+        // errorMessage.fullNameError = 'Name required'
+        errorArr.push('Name required')
+    } 
+    if (addressRef.current.value === ''){
+        // errorMessage.addressError = 'Address required'
+        errorArr.push('Address required')
+    }
+    if (cityRef.current.value === ''){
+        // errorMessage.cityError = 'City required'
+        errorArr.push('City required')
+    }
+    if (stateRef.current.value === ''){
+        // errorMessage.stateError = 'State required'
+        errorArr.push('State required')
+    }
+    if (idRef.current.value === ''){
+        // errorMessage.idError = 'ID required'
+        errorArr.push('ID required')
     }
 
     console.log(errors)
-    if(!errors){
+    if(errorArr.length === 0){
         let newPerson = {
             picture: { large: ''},
             cell: cellRef.current.value,
@@ -71,7 +75,7 @@ export const Modal = (props) => {
         }
         props.createPerson(newPerson)
     } else {
-        console.log(errorMessage)
+        console.log(errorArr)
     }
   }
 
@@ -108,9 +112,9 @@ export const Modal = (props) => {
                         <div>
                             <input type='text' placeholder='ID'ref={idRef}></input>
                         </div>                    
-                        <div class="actions">
+                        <div className="actions">
                             <button type='submit' onClick={newPerson} id='submit'>Submit</button>
-                            <button onClick={onClose} class="toggle-button">Close Modal</button>
+                            <button onClick={onClose} className="toggle-button">Close Modal</button>
                         </div>
                     </form>
                 </div>
