@@ -13,39 +13,50 @@ export const Modal = (props) => {
   const idRef= useRef()
   const [errorArr, setErrorArr] = useState([])
 
-  useEffect(() => {}, [errorArr])
+  useEffect(() => {console.log(errorArr)}, [errorArr])
   const onClose= (e) => {props.onClose()};
 
   const newPerson = (e)=> { 
     e.preventDefault()
-
+    setErrorArr([errorArr, ''])
+    let errorStore = []
     if(cellRef.current.value === ''){
-        setErrorArr(...errorArr, 'Cell Phone Number Required')
+        errorStore.push('Cell Phone Number Required')
+        // setErrorArr([...errorArr, 'Cell Phone Number Required'])
     }
     if(emailRef.current.value === ''){
-        setErrorArr(...errorArr, 'Email required')
+        errorStore.push('Email required')
+        //setErrorArr([...errorArr, 'Email required'])
     } 
     if(fullnameRef.current.value === ''){
+        errorStore.push('Name required')
         // errorMessage.fullNameError = 'Name required'
-        setErrorArr(...errorArr, 'Name required')
+        //setErrorArr([...errorArr, 'Name required'])
     } 
     if (addressRef.current.value === ''){
+        errorStore.push('Address required')
         // errorMessage.addressError = 'Address required'
-        setErrorArr(...errorArr, 'Address required')
+        // setErrorArr([...errorArr, 'Address required'])
     }
     if (cityRef.current.value === ''){
+        errorStore.push('City required')
         // errorMessage.cityError = 'City required'
-        setErrorArr(...errorArr, 'City required')
+       // setErrorArr([...errorArr, 'City required'])
     }
     if (stateRef.current.value === ''){
+        errorStore.push('State required')
         // errorMessage.stateError = 'State required'
-        setErrorArr(...errorArr, 'State required')
+        //setErrorArr([...errorArr, 'State required'])
     }
     if (idRef.current.value === ''){
+        errorStore.push('ID required')
         // errorMessage.idError = 'ID required'
-        setErrorArr(...errorArr, 'ID required')
+        // setErrorArr([...errorArr, 'ID required'])
     };
-
+    if(errorStore.length > 0){
+        setErrorArr([...errorArr, errorStore])
+        // setErrorArr(errorArr.concat(errorStore))
+    }
     if(!errorArr){
         let newPerson = {
             picture: { large: ''},
@@ -65,9 +76,7 @@ export const Modal = (props) => {
             }
         }
         props.createPerson(newPerson)
-    } else {
-        console.log(errorArr)
-    }
+    } 
   }
 
   return (
@@ -78,7 +87,9 @@ export const Modal = (props) => {
             ):(
                 <div className='Modal'>
                     <h2>Modal Window</h2>
-                    {/* {errorArr ? (errorArr.forEach(error => { <div className='Error'>{error}</div>})):(<> </>) } */}
+                    <div className='Errorsdiv'>
+                        { errorArr.length > 0 ? (errorArr.map(error => ( <div className='Error'>{error}</div>))): (<div>No errors</div>) } 
+                    </div>
                     <form>
                         <div>
                             <input type='text' placeholder='Name' ref={fullnameRef}></input>
