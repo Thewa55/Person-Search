@@ -13,13 +13,22 @@ export const Modal = (props) => {
   const idRef= useRef()
   const [errorArr, setErrorArr] = useState([])
 
+  let initError = {
+    cellError: '', 
+    emailError: '',
+    nameError: '',
+    addressError: '',
+    cityError: '',
+    stateError:'',
+    idError: ''}
+
   useEffect(() => {console.log(errorArr)}, [errorArr])
   const onClose= (e) => {props.onClose()};
 
   const newPerson = (e)=> { 
     e.preventDefault()
-    setErrorArr([errorArr, ''])
     let errorStore = []
+    setErrorArr(errorStore)
     if(cellRef.current.value === ''){
         errorStore.push('Cell Phone Number Required')
         // setErrorArr([...errorArr, 'Cell Phone Number Required'])
@@ -88,7 +97,7 @@ export const Modal = (props) => {
                 <div className='Modal'>
                     <h2>Modal Window</h2>
                     <div className='Errorsdiv'>
-                        { errorArr.length > 0 ? (errorArr.map(error => ( <div className='Error'>{error}</div>))): (<div>No errors</div>) } 
+                        { errorArr.length > 0 ? (errorArr.map(error => ( <div className='Error'>{error}</div>))): (<div></div>) } 
                     </div>
                     <form>
                         <div>

@@ -35,3 +35,7 @@ button {
 #submit{
     margin-right: 1em;
 }
+.Errorsdiv {
+    font: red;
+    font-size: small;
+}
