@@ -35,7 +35,7 @@ button {
 #submit{
     margin-right: 1em;
 }
-.Errorsdiv {
+.Error {
     font: red;
     font-size: small;
 }
