@@ -41,7 +41,6 @@ export const Modal = (props) => {
     } else {
         setDisabled(true)
     }
-
   }
 
   const newPerson = (e)=> { 
